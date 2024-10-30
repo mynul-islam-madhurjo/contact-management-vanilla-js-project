@@ -10,17 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const formSection = document.getElementById('contact-form-section');
     const createButton = document.getElementById('create-contact');
     const closeButton = document.getElementById('close-form');
+    const modalOverlay = document.getElementById('modal-overlay');
+
 
     // Show form when create button is clicked
     createButton.addEventListener('click', () => {
         formSection.classList.remove('hidden');
+        modalOverlay.classList.add('active');
     });
 
-    // Hide form when close button is clicked
-    closeButton.addEventListener('click', () => {
+    // Hide form and overlay
+    function hideForm() {
         formSection.classList.add('hidden');
+        modalOverlay.classList.remove('active');
         contactForm.reset();
+    }
+
+    closeButton.addEventListener('click', hideForm);
+    modalOverlay.addEventListener('click', hideForm);
+
+    // Prevent modal from closing when clicking inside the form
+    formSection.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
+
 
     // Handle form submission
     contactForm.addEventListener('submit', (event) => {
@@ -33,8 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         addContact(newContact);
-        displayContacts(); // Refresh the contact list
-        formSection.classList.add('hidden'); // Hide the form
-        contactForm.reset(); // Reset the form
+        displayContacts();
+        hideForm();
     });
 });
