@@ -1,4 +1,3 @@
-// contactForm.js
 import { validateContact } from '../utils/validations.js';
 import { saveContactToStorage, getContactsFromStorage } from '../utils/storage.js';
 

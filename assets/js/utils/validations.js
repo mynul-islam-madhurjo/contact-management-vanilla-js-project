@@ -1,4 +1,3 @@
-// validations.js
 export function validateContact(contact) {
     const nameValid = contact.name.trim() !== '';
     const phoneValid = /^[0-9]{11}$/.test(contact.phone);  // Example: Simple 11-digit phone check

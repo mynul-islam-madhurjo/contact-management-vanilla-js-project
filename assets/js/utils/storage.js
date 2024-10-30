@@ -1,4 +1,3 @@
-// storage.js
 export function getContactsFromStorage() {
     const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
     console.log('Fetched Contacts:', contacts);
