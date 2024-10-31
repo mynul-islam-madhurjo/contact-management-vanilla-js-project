@@ -4,6 +4,7 @@ import { saveContactToStorage, getContactsFromStorage } from '../utils/storage.j
 // Track which contact is being edited
 let editingIndex = null;
 
+// This adds the user contact
 export function addContact(contact) {
     // Validate the contact details
     if (!validateContact(contact)) {
@@ -21,6 +22,7 @@ export function addContact(contact) {
     return true;
 }
 
+// This updates the user contact
 export function updateContact(contact, index) {
     if (!validateContact(contact)) {
         alert('Please check your input fields for errors.');
@@ -33,6 +35,7 @@ export function updateContact(contact, index) {
     return true;
 }
 
+// This loads the user contact for editing
 export function loadContactForEdit(index) {
     const contacts = getContactsFromStorage();
     const contact = contacts[index];
@@ -52,11 +55,19 @@ export function loadContactForEdit(index) {
     document.querySelector('#contact-form-section h2').textContent = 'Edit Contact';
 }
 
+// This resets the contact form
 export function resetForm() {
     editingIndex = null;
     document.getElementById('contact-form').reset();
     document.querySelector('#contact-form button[type="submit"]').textContent = 'Add Contact';
     document.querySelector('#contact-form-section h2').textContent = 'Add New Contact';
+}
+
+// This deletes the user contact
+export function deleteContact(index) {
+    const contacts = getContactsFromStorage();
+    contacts.splice(index, 1); // Remove contact at the specified index
+    saveContactToStorage(contacts);
 }
 
 export { editingIndex };

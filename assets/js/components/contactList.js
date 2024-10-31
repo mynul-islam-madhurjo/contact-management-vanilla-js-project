@@ -1,5 +1,5 @@
 import { getContactsFromStorage } from '../utils/storage.js';
-import { loadContactForEdit } from './contactForm.js';
+import { loadContactForEdit, deleteContact } from './contactForm.js';
 
 export function displayContacts(searchTerm = '') {
     const contacts = getContactsFromStorage();
@@ -37,6 +37,17 @@ export function displayContacts(searchTerm = '') {
             document.getElementById('modal-overlay').classList.add('active');
             loadContactForEdit(index);
         });
+
+        // Delete button click handler with confirm
+        const deleteBtn = row.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', () => {
+            const confirmDelete = confirm('Are you sure you want to delete this contact?');
+            if(confirmDelete) {
+                deleteContact(index);
+                displayContacts();
+            }
+        });
+
         contactsBody.appendChild(row);
     });
 }

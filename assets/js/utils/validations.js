@@ -1,8 +1,8 @@
 export function validateContact(contact) {
-    const nameValid = contact.name.trim() !== '';
-    const phoneValid = /^[0-9]{11}$/.test(contact.phone);  // Example: Simple 11-digit phone check
-    const emailValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(contact.email);
-    const addressValid = contact.address.trim() !== '';
+    const nameValid = contact.name.trim().length >= 2;
+    const phoneValid = contact.phone.trim().length >= 11;
+    const emailValid = contact.email.includes('@');
+    const addressValid = contact.address.trim().length > 5;
 
     // Log validation checks for debugging
     console.log('Name Valid:', nameValid);
