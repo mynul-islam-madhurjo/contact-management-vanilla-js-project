@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', hideForm);
     modalOverlay.addEventListener('click', hideForm);
 
-    // Prevent modal from closing when clicking inside the form
-    formSection.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
     // Handle form submission
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
