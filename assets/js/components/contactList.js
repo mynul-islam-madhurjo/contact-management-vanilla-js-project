@@ -1,4 +1,5 @@
 import { getContactsFromStorage } from '../utils/storage.js';
+import { loadContactForEdit } from './contactForm.js';
 
 export function displayContacts(searchTerm = '') {
     const contacts = getContactsFromStorage();
@@ -27,6 +28,15 @@ export function displayContacts(searchTerm = '') {
                 <button class="delete-btn" data-index="${index}">Delete</button>
             </td>
         `;
+
+        // Add edit button click handler
+        const editBtn = row.querySelector('.edit-btn');
+        editBtn.addEventListener('click', () => {
+            // Show form with contact data
+            document.getElementById('contact-form-section').classList.remove('hidden');
+            document.getElementById('modal-overlay').classList.add('active');
+            loadContactForEdit(index);
+        });
         contactsBody.appendChild(row);
     });
 }
